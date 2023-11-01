@@ -33,6 +33,17 @@ const Auth = () => {
         }
     }
 
+    //аутентификация с гугл
+    const handleSignInWithGoogle = async() => {
+        const provider = new firebase.auth.GoogleAuthProvider();
+        try {
+            await firebase.auth().signInWithPopup(provider);
+        }
+        catch(error) {
+            console.error(error);
+        }
+    }
+
     return (
         <div>
             {firebase.auth().currentUser ? (
@@ -56,6 +67,7 @@ const Auth = () => {
                     />
                     <button onClick={handleSignUp}>Зарегистрироваться</button>
                     <button onClick={handleSignIn}>Войти</button>
+                    <button onClick={handleSignInWithGoogle}>Войти с Google</button>
                 </div>
             )}
         </div>
